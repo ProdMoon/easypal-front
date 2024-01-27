@@ -1,5 +1,5 @@
 <script setup>
-import ServerStatusComponent from '@/components/ServerStatusComponent.vue'
+import ServerStatusComponent from '@/components/ServerStatusComponent.vue';
 </script>
 
 <template>

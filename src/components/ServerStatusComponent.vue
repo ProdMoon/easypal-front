@@ -1,27 +1,27 @@
 <script setup>
-import { ref, onMounted } from 'vue'
-import executeCommand from '@/components/ExecuteCommand'
-import RefreshIcon from '@/components/icons/RefreshIcon.vue'
+import { ref, onMounted } from 'vue';
+import executeCommand from '@/components/ExecuteCommand';
+import RefreshIcon from '@/components/icons/RefreshIcon.vue';
 
-const status = ref('')
+const status = ref('');
 
 const checkStatus = async () => {
-  const command = 'ps -ef | grep Pal'
+  const command = 'ps -ef | grep Pal';
   try {
-    const responseText = await executeCommand(command)
+    const responseText = await executeCommand(command);
     if (responseText.includes('PalServer-Linux-Test')) {
-      status.value = 'Running'
-      return
+      status.value = 'Running';
+      return;
     }
-    status.value = 'Stopped'
+    status.value = 'Stopped';
   } catch (error) {
-    status.value = error
+    status.value = error;
   }
-}
+};
 
 onMounted(async () => {
-  await checkStatus()
-})
+  await checkStatus();
+});
 </script>
 
 <template>
