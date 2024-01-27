@@ -14,5 +14,5 @@ export const useServerStatusStore = defineStore('server-status', () => {
   function setError() {
     status.value = 'error';
   }
-  return { status, isOnline, isOffline, setOnline, setOffline, setError};
+  return { status, isOnline, isOffline, setOnline, setOffline, setError };
 });

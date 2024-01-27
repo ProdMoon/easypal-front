@@ -13,6 +13,7 @@ import { RouterLink, RouterView } from 'vue-router';
   <RouterView />
 
   <footer class="mt-40 mb-4 text-center text-sm text-gray-500">
-    <a class="underline" href="https://github.com/ProdMoon" target="_blank">ProdMoon</a> © 2024 All rights reserved.
+    <a class="underline" href="https://github.com/ProdMoon" target="_blank">ProdMoon</a>
+    © 2024 All rights reserved.
   </footer>
 </template>
