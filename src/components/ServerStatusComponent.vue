@@ -1,21 +1,32 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { onMounted, computed } from 'vue';
 import executeCommand from '@/components/ExecuteCommand';
 import RefreshIcon from '@/components/icons/RefreshIcon.vue';
+import { useServerStatusStore } from '@/stores/serverStatus';
 
-const status = ref('');
+const serverStatus = useServerStatusStore();
+const status = computed(() => {
+  if (serverStatus.isOnline) {
+    return 'Running';
+  } else if (serverStatus.isOffline) {
+    return 'Stopped';
+  } else {
+    return 'Error';
+  }
+});
 
 const checkStatus = async () => {
   const command = 'ps -ef | grep Pal';
   try {
     const responseText = await executeCommand(command);
     if (responseText.includes('PalServer-Linux-Test')) {
-      status.value = 'Running';
+      serverStatus.setOnline();
       return;
     }
-    status.value = 'Stopped';
+    serverStatus.setOffline();
   } catch (error) {
-    status.value = error;
+    console.error(error);
+    serverStatus.setError();
   }
 };
 
